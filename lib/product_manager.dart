@@ -37,6 +37,7 @@ class _ProductManagerState extends State<ProductManager> {
     setState(() {
       _products.add(product);
     });
+    print(_products);
   }
 
   @override
