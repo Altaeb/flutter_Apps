@@ -60,7 +60,7 @@ class EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused> {
     assert(viewport != null);
 
     ScrollableState scrollableState = Scrollable.of(context);
-    assert(scrollableState != null);
+    assert(scrollableState != nullgi);
 
     ScrollPosition position = scrollableState.position;
     double alignment;
