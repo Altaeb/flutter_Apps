@@ -70,7 +70,7 @@ class ProductsModel extends ConnectedProductsModel {
     };
     try {
       final http.Response response = await http.post(
-          'https://flutter-products.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
+          'https://flutter-a.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
           body: json.encode(productData));
 
       if (response.statusCode != 200 && response.statusCode != 201) {
@@ -118,7 +118,7 @@ class ProductsModel extends ConnectedProductsModel {
     };
     return http
         .put(
-            'https://flutter-products.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
+            'https://flutter-a.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
             body: json.encode(updateData))
         .then((http.Response reponse) {
       _isLoading = false;
@@ -148,7 +148,7 @@ class ProductsModel extends ConnectedProductsModel {
     notifyListeners();
     return http
         .delete(
-            'https://flutter-products.firebaseio.com/products/${deletedProductId}.json?auth=${_authenticatedUser.token}')
+            'https://flutter-a.firebaseio.com/products/${deletedProductId}.json?auth=${_authenticatedUser.token}')
         .then((http.Response response) {
       _isLoading = false;
       notifyListeners();
@@ -165,7 +165,7 @@ class ProductsModel extends ConnectedProductsModel {
     notifyListeners();
     return http
         .get(
-            'https://flutter-products.firebaseio.com/products.json?auth=${_authenticatedUser.token}')
+            'https://flutter-a.firebaseio.com/products.json?auth=${_authenticatedUser.token}')
         .then<Null>((http.Response response) {
       final List<Product> fetchedProductList = [];
       final Map<String, dynamic> productListData = json.decode(response.body);
@@ -217,11 +217,11 @@ class ProductsModel extends ConnectedProductsModel {
     http.Response response;
     if (newFavoriteStatus) {
       response = await http.put(
-          'https://flutter-products.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}',
+          'https://flutter-a.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}',
           body: json.encode(true));
     } else {
       response = await http.delete(
-          'https://flutter-products.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}');
+          'https://flutter-a.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}');
     }
     if (response.statusCode != 200 && response.statusCode != 201) {
       final Product updatedProduct = Product(
@@ -273,13 +273,13 @@ class UserModel extends ConnectedProductsModel {
     http.Response response;
     if (mode == AuthMode.Login) {
       response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDRNWISSlMAV8cduZYT9sEVKhRx6qdwJcc',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAtep49_ouz42Qf948jgjIUSnLXGRLxpPg',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
     } else {
       response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDRNWISSlMAV8cduZYT9sEVKhRx6qdwJcc',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAtep49_ouz42Qf948jgjIUSnLXGRLxpPg',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
